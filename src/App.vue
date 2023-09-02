@@ -1,14 +1,17 @@
 <template>
+	<the-header headerCaption="Notebook"></the-header>
 	<stored-resource :resources="storedResources"></stored-resource>
 </template>
 
 <script>
+	import TheHeader from '@/components/layouts/TheHeader'
 	import StoredResource from './components/learning-resources/StoredResource.vue';
 
 	export default {
 		name: "App",
 		components: {
 			StoredResource,
+			TheHeader
 		},
 		data() {
 			return {
@@ -31,4 +34,11 @@
 	};
 </script>
 
-<style></style>
+<style>
+html {
+	font-family: sans-serif;
+}
+body {
+	margin: 0;
+}
+</style>
