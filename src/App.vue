@@ -1,44 +1,31 @@
 <template>
 	<the-header headerCaption="Notebook"></the-header>
-	<stored-resource :resources="storedResources"></stored-resource>
+	<the-resource></the-resource>
 </template>
 
 <script>
-	import TheHeader from '@/components/layouts/TheHeader'
-	import StoredResource from './components/learning-resources/StoredResource.vue';
+	import TheHeader from "@/components/layouts/TheHeader";
+	import TheResource from "./components/learning-resources/TheResource.vue";
 
 	export default {
 		name: "App",
 		components: {
-			StoredResource,
-			TheHeader
+			TheHeader,
+			TheResource
 		},
 		data() {
 			return {
-				storedResources: [
-					{
-						id: "official-gide",
-						title: "Official gide",
-						description: "The official Vue.js documentation",
-						url: "https://v3.ru.vuejs.org/ru",
-					},
-					{
-						id: "google",
-						title: "Google",
-						description: "Learn to Google",
-						url: "https://google.com",
-					},
-				],
+				
 			};
 		},
 	};
 </script>
 
 <style>
-html {
-	font-family: sans-serif;
-}
-body {
-	margin: 0;
-}
+	html {
+		font-family: sans-serif;
+	}
+	body {
+		margin: 0;
+	}
 </style>
