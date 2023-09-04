@@ -1,18 +1,19 @@
 <template>
 	<base-card>
 		<base-button
-			:mode="flat"
+			:mode="storedResBtnMode"
 			@click="selectTab('stored-resource')"
 			>Stored Notes</base-button
 		>
 		<base-button
-			:mode="flat"
+			:mode="addResBtnMode"
 			@click="selectTab('add-resource')"
 			>Add Notes</base-button
 		>
 	</base-card>
 	<component :is="selectedTab"></component>
 </template>
+
 <script>
 	import StoredResource from "./StoredResource.vue";
 	import AddResource from "./AddResource.vue";
@@ -47,6 +48,14 @@
 				this.selectedTab = tab;
 			},
 		},
+		computed: {
+			storedResBtnMode() {
+				return this.selectedTab === "stored-resource" ? null : "flat";
+			},
+			addResBtnMode() {
+				return this.selectedTab === "add-resource" ? null : "flat";
+			}
+		},
 		provide() {
 			return {
 				resources: this.storedResources,
@@ -54,4 +63,5 @@
 		},
 	};
 </script>
+
 <style></style>
