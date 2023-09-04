@@ -1,29 +1,69 @@
 <template>
 	<base-card>
-		<form action="">
+		<form @submit.prevent="submitData">
 			<div class="form-control">
 				<label for="title">Title</label>
 				<input
 					type="text"
 					id="title"
-					name="title" />
+					name="title"
+					ref="titleInput" />
 			</div>
 			<div class="form-control">
 				<label for="description">Title</label>
 				<textarea
 					name="description"
 					id="description"
-					rows="3"></textarea>
+					rows="3"
+					ref="descriptionInput"></textarea>
+			</div>
+			<div class="form-control">
+				<label for="link"> Link </label>
+				<input
+					id="link"
+					name="link"
+					type="url"
+					ref="urlInput" />
+			</div>
+			<div>
+				<base-button type="submit">Add Resources</base-button>
 			</div>
 		</form>
-		<div>
-			<base-button type="submit">Add Resources</base-button>
-		</div>
 	</base-card>
 </template>
 <script>
 	export default {
 		name: "AddResource",
+		inject: ["addNote"],
+		data() {
+			return {
+				inputIsInvalid: false,
+			};
+		},
+		methods: {
+			submitData() {
+				const enteredTitle = this.$refs.titleInput.value.trim();
+				const enteredDescription = this.$refs.descriptionInput.value.trim();
+				const enteredUrl = this.$refs.urlInput.value.trim();
+
+				if (
+					enteredTitle === "" ||
+					enteredDescription === "" ||
+					enteredUrl === ""
+				) {
+					this.inputIsInvalid = true;
+					return;
+				}
+				this.addNote(enteredTitle, enteredDescription, enteredUrl);
+
+				this.$refs.titleInput.value = "";
+				this.$refs.descriptionInput.value = "";
+				this.$refs.urlInput.value = "";
+			},
+			confirmError() {
+				this.inputIsInvalid = false;
+			},
+		},
 	};
 </script>
 <style scoped>

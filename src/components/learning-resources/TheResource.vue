@@ -47,6 +47,17 @@
 			selectTab(tab) {
 				this.selectedTab = tab;
 			},
+			addNote(title, description, url) {
+				const date = new Date();
+				const newNote = {
+					id: date.toISOString(),
+					title: title,
+					description: description,
+					url: url,
+				};
+				this.storedResources.unshift(newNote);
+				this.selectedTab = "stored-resource";
+			},
 		},
 		computed: {
 			storedResBtnMode() {
@@ -54,11 +65,12 @@
 			},
 			addResBtnMode() {
 				return this.selectedTab === "add-resource" ? null : "flat";
-			}
+			},
 		},
 		provide() {
 			return {
 				resources: this.storedResources,
+				addNote: this.addNote,
 			};
 		},
 	};
