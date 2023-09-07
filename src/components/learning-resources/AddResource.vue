@@ -1,4 +1,18 @@
 <template>
+	<base-dialog @close="confirmError"
+		v-if="inputIsInvalid"
+		title="Invalid input">
+		<template #default>
+			<p>Unfortunately, your input is invalid.</p>
+			<p>Please check all inputs and make sure you enter at least one character into each input field.</p>
+		</template>
+		<template #actions>
+			<base-button @click="confirmError">
+				Okey
+			</base-button>
+		</template>
+	</base-dialog>
+
 	<base-card>
 		<form @submit.prevent="submitData">
 			<div class="form-control">
@@ -43,7 +57,8 @@
 		methods: {
 			submitData() {
 				const enteredTitle = this.$refs.titleInput.value.trim();
-				const enteredDescription = this.$refs.descriptionInput.value.trim();
+				const enteredDescription =
+					this.$refs.descriptionInput.value.trim();
 				const enteredUrl = this.$refs.urlInput.value.trim();
 
 				if (
