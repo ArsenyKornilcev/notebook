@@ -24,7 +24,7 @@
 					ref="titleInput" />
 			</div>
 			<div class="form-control">
-				<label for="description">Title</label>
+				<label for="description">Description</label>
 				<textarea
 					name="description"
 					id="description"
@@ -40,7 +40,7 @@
 					ref="urlInput" />
 			</div>
 			<div>
-				<base-button type="submit">Add Resources</base-button>
+				<base-button type="submit">Add Resource</base-button>
 			</div>
 		</form>
 	</base-card>

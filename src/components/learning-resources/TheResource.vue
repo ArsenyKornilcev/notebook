@@ -60,6 +60,12 @@
 				this.storedResources.unshift(newNote);
 				this.selectedTab = "stored-resource";
 			},
+			removeNote(resId) {
+				const resIndex = this.storedResources.findIndex(
+					(res) => res.id === resId
+				);
+				this.storedResources.splice(resIndex, 1);
+			},
 		},
 		computed: {
 			storedResBtnMode() {
@@ -73,6 +79,7 @@
 			return {
 				resources: this.storedResources,
 				addNote: this.addNote,
+				removeNote: this.removeNote,
 			};
 		},
 	};
